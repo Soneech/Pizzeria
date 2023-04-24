@@ -3,8 +3,42 @@
     <head>
         <meta charset="UTF-8">
         <title>Главная</title>
+        <link rel="stylesheet" th:href="@{/styles/css/main.css}">
     </head>
     <body>
-        <p>Главная страница, на которой пока что ничего нет)</p>
+        <div class="header">
+            <div class="logo">
+                <a th:href="@{/}">
+                    <img class="logo-icon" th:src="@{/icon/pizza.png}">
+                </a>
+                <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
+            </div>
+            <div class="auth">
+                <a class="sign-in auth-links" th:href="@{/}">Войти</a>
+                <a class="sign-up auth-links" th:href="@{/}">Зарегистрироваться</a>
+                <a class="username auth-links"></a>
+            </div>
+        </div>
+
+        <div class="main">
+
+        </div>
+
+        <div class="footer">
+            <div>
+                <p class="author">© Soneech, 2023</p>
+            </div>
+            <div class="links">
+                <a class="github" href="https://github.com/Soneech">
+                    <img th:src="@{/icon/github.png}" class="links-img github-img">
+                </a>
+                <a class="vk" href="https://vk.com/soneech">
+                    <img th:src="@{/icon/vk.png}" class="links-img vk-img">
+                </a>
+                <a class="telegram" href="https://telegram.me/sonechous">
+                    <img th:src="@{/icon/telegram.png}" class="links-img telegram-img">
+                </a>
+            </div>
+        </div>
     </body>
 </html>
