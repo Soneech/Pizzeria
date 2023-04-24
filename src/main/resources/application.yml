@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pizzeria
+    username: postgres
+    password: postgres
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  security:
+    basic:
+      enabled: false
