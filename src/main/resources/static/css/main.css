@@ -43,13 +43,19 @@
     justify-content: space-around;
 }
 
+.links {
+    color: #361b00;
+}
+
 .auth-links {
     color: white;
+    text-shadow: 1px 1px 5px white;
     text-decoration: none;
 }
 
 .main {
     margin-top: 100px;
+    width: 80%;
     height: 100%;
 }
 
@@ -81,4 +87,53 @@
     color: white;
     text-shadow: 1px 1px 5px white;
     font-size: 18px;
+}
+
+.form-block {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form {
+    margin: auto;
+    width: 60%;
+    display: flex;
+    height: 250px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(238, 238, 238, 0.47);
+    border-radius: 15px;
+}
+
+.form-reg {
+    height: 430px;
+}
+
+input {
+    height: 23px;
+    width: 300px;
+    border: 1px solid rgba(190, 190, 190, 0.47);
+    border-radius: 3px;
+}
+
+.button {
+    width: 185px;
+    height: 25px;
+    background-color: #ef8b29;
+    color: white;
+    text-shadow: 1px 1px 5px white;
+}
+
+.button-reg {
+    margin-bottom: 10px;
+}
+
+.head-text {
+    text-align: center;
+    font-size: 18px;
+}
+
+.error-message {
+    color: red;
 }

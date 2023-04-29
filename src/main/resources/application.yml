@@ -10,7 +10,7 @@ spring:
   jpa:
     generateDdl: true
 
-#security:
-#  basic:
-#    enabled: false
-  #enable-csrf: true
+security:
+  basic:
+    enabled: false
+  enable-csrf: true

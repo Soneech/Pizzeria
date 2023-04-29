@@ -16,15 +16,17 @@
         </div>
 
         <div class="form-block main">
-            <form action="/login" method="post">
+            <p class="head-text">Вход в аккаунт</p>
+            <form action="/login" method="post" class="form">
                 <input type="email" name="username" placeholder="Почта">
                 <input type="password" name="password" placeholder="Пароль">
 
-<!--                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
                 <input type="submit" class="button" value="Войти">
+
+                <a href="/registration" class="links">Зарегистрироваться</a>
             </form>
 
-            <a href="/registration">Зарегистрироваться</a>
+
         </div>
 
         <div class="footer">
