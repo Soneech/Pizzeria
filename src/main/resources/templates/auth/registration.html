@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Регистрация</title>
+        <link rel="stylesheet" th:href="@{/styles/css/main.css}">
+    </head>
+    <body>
+    <div class="header">
+        <div class="logo">
+            <a th:href="@{/}">
+                <img class="logo-icon" th:src="@{/icon/pizza.png}">
+            </a>
+            <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
+        </div>
+    </div>
+
+    <div class="form-block main">
+        <form th:action="@{/registration}" th:method="POST" th:object="${user}">
+            <p class="error-message" th:text="${errorMessage}"></p>
+
+            <input type="text" name="name" placeholder="Имя" th:field="*{name}">
+            <input type="text" name="surname" placeholder="Фамилия" th:field="*{surname}">
+            <input type="email" name="username" placeholder="Почта" th:field="*{email}">
+            <input type="password" name="password" placeholder="Пароль" th:field="*{password}">
+            <input type="password" name="password-confirm" placeholder="Повторите пароль" th:field="*{passwordConfirm}">
+
+<!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+            <input type="submit" class="button" value="Зарегистрироваться">
+        </form>
+
+        <a href="/login">Войти</a>
+    </div>
+
+    <div class="footer">
+        <div>
+            <p class="author">© Soneech, 2023</p>
+        </div>
+        <div class="links">
+            <a class="github" href="https://github.com/Soneech">
+                <img th:src="@{/icon/github.png}" class="links-img github-img">
+            </a>
+            <a class="vk" href="https://vk.com/soneech">
+                <img th:src="@{/icon/vk.png}" class="links-img vk-img">
+            </a>
+            <a class="telegram" href="https://telegram.me/sonechous">
+                <img th:src="@{/icon/telegram.png}" class="links-img telegram-img">
+            </a>
+        </div>
+    </div>
+    </body>
+</html>

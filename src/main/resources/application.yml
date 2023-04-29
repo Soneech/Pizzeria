@@ -7,6 +7,10 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
-  security:
-    basic:
-      enabled: false
+  jpa:
+    generateDdl: true
+
+#security:
+#  basic:
+#    enabled: false
+  #enable-csrf: true

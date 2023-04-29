@@ -1,13 +1,17 @@
 package org.soneech.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebMvc
-public class ResourcesConfiguration implements WebMvcConfigurer {
+public class MvcConfiguration implements WebMvcConfigurer {
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("/auth/login");
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
