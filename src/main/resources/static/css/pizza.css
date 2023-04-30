@@ -1,16 +1,16 @@
 .pizza-image {
-    width: 320px;
-    height: 320px;
+    width: 250px;
+    height: 250px;
 }
 
 .pizza-block {
     display: flex;
-    width: 380px;
+    width: 290px;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 10px;
-    box-shadow: 3px 3px 10px 10px rgba(201, 201, 201, 0.46);
+    box-shadow: 2px 2px 13px 7px rgba(201, 201, 201, 0.36);
     border-radius: 15px;
     margin: 10px;
 }
@@ -27,6 +27,38 @@
 .pizza-grid {
     width: 90%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     margin: auto;
+}
+
+.pizza-image-page {
+    width: 380px;
+    height: 380px;
+}
+
+.pizza-image-block {
+    box-shadow: 2px 2px 13px 7px rgba(201, 201, 201, 0.36);
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+}
+
+.pizza-block-page {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pizza-info {
+    display: flex;
+    justify-content: space-around;
+    height: 60%;
+    width: 400px;
+    flex-direction: column;
+}
+
+.pizza-info p, h2 {
+    font-size: 18px;
 }

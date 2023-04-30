@@ -1,5 +1,6 @@
 package org.soneech.controllers;
 
+import org.soneech.models.Image;
 import org.soneech.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ public class PizzasController {
     @GetMapping("/{id}")
     public String pizzaPage(@PathVariable("id") Long id, Model model) {
         model.addAttribute("pizza", pizzaService.getPizzaById(id).get());
+        model.addAttribute("img_extension", Image.EXTENSION);
         return "pizza/pizza_page";
     }
 }

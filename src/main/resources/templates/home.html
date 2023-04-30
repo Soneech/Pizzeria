@@ -23,6 +23,7 @@
 
         <div class="main">
             <div class="content">
+                <p class="greeting-text">Добро пожаловать в Soneech Pizza!</p>
                 <div class="pizza-grid">
                     <div class="pizza-block" th:each="pizza: ${pizzas}">
                         <a class="pizza-link" th:href="@{/pizza/{id}(id=${pizza.getId()})}">
@@ -32,7 +33,6 @@
                         </a>
                     </div>
                 </div>
-
             </div>
 
             <div class="footer">

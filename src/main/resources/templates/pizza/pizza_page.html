@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title th:text="${pizza.getName()}"></title>
+        <link rel="stylesheet" th:href="@{/styles/css/main.css}">
+        <link rel="stylesheet" th:href="@{/styles/css/pizza.css}">
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+                <a th:href="@{/}">
+                    <img class="logo-icon" th:src="@{/icon/pizza.png}">
+                </a>
+                <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
+            </div>
+        </div>
 
-</body>
+        <div class="main">
+            <div class="content">
+                <div class="pizza-block-page">
+                    <div class="pizza-image-block">
+                        <img class="pizza-image-page"
+                             th:src="@{/image/pizza/{file}(file=${pizza.getImage().getFileName() + img_extension})}">
+                    </div>
+                    <div class="pizza-info">
+                        <h2 class="pizza-name" th:text="${pizza.getName()}"/>
+                        <p class="pizza-price" th:text="${pizza.getPrice()} + 'р'"/>
+                        <p class="pizza-description" th:text="${pizza.getDescription()}"/>
+                        <input type="button" class="button" value="В корзину"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div>
+                    <p class="author">© Soneech, 2023</p>
+                </div>
+                <div class="links">
+                    <a class="github" href="https://github.com/Soneech">
+                        <img th:src="@{/icon/github.png}" class="links-img github-img">
+                    </a>
+                    <a class="vk" href="https://vk.com/soneech">
+                        <img th:src="@{/icon/vk.png}" class="links-img vk-img">
+                    </a>
+                    <a class="telegram" href="https://telegram.me/sonechous">
+                        <img th:src="@{/icon/telegram.png}" class="links-img telegram-img">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
