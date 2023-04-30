@@ -1,4 +1,4 @@
-package org.soneech.domain;
+package org.soneech.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,18 +7,16 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="users")
+@Table(name = "images")
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
+public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String surname;
-    private String email;
-    private String password;
+    @Column(name = "file_name")
+    private String fileName;
     @Transient
-    private String passwordConfirm;
+    public static final String EXTENSION = ".webp";
 }

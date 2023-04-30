@@ -1,13 +1,17 @@
 package org.soneech.controllers;
 
-import org.soneech.domain.User;
+import org.soneech.security.User;
 import org.soneech.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 public class AuthController {
@@ -20,21 +24,26 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "/auth/login";
+        return "auth/login";
     }
 
     @GetMapping("/registration")
     public String registrationPage(@ModelAttribute("user") User user) {
-        return "/auth/registration";
+        return "auth/registration";
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("user") User user, Model model) {
-        String message = registrationService.register(user);
-        if (message == null) {
-            return "redirect:/login";
+    public String registration(Model model, @ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            Map<String, String> report = registrationService.checkAndRegister(user);
+            if (report.isEmpty()) {
+                return "redirect:/login";
+            }
+            for (Map.Entry<String, String> entry : report.entrySet()) {
+                model.addAttribute(entry.getKey(), entry.getValue());
+            }
+
         }
-        model.addAttribute("message", message);
-        return "/auth/registration";
+        return "auth/registration";
     }
 }

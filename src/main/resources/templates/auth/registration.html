@@ -6,48 +6,55 @@
         <link rel="stylesheet" th:href="@{/styles/css/main.css}">
     </head>
     <body>
-    <div class="header">
-        <div class="logo">
-            <a th:href="@{/}">
-                <img class="logo-icon" th:src="@{/icon/pizza.png}">
-            </a>
-            <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
+        <div class="header">
+            <div class="logo">
+                <a th:href="@{/}">
+                    <img class="logo-icon" th:src="@{/icon/pizza.png}">
+                </a>
+                <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
+            </div>
         </div>
-    </div>
 
-    <div class="form-block main">
-        <p class="head-text">Регистрация</p>
-        <form th:action="@{/registration}" th:method="POST" th:object="${user}" class="form form-reg">
-            <span class="error-message" th:text="${message}"></span>
+        <div class="form-block main">
 
-            <input type="text" name="name" placeholder="Имя" th:field="*{name}">
-            <input type="text" name="surname" placeholder="Фамилия" th:field="*{surname}">
-            <input type="email" name="username" placeholder="Почта" th:field="*{email}">
-            <input type="password" name="password" placeholder="Пароль" th:field="*{password}">
-            <input type="password" name="password-confirm" placeholder="Повторите пароль" th:field="*{passwordConfirm}">
-            <input type="submit" class="button button-reg" value="Зарегистрироваться">
+            <div class="content">
+                <p class="head-text">Регистрация</p>
+                <form th:action="@{/registration}" th:method="POST" th:object="${user}" class="form form-reg">
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message"></span>
+                    <input type="text" name="name" placeholder="Имя" th:field="*{name}">
 
-            <a href="/login" class="links">Войти</a>
-        </form>
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></span>
+                    <span th:text="${existError}" class="error-message"></span>
+                    <input type="email" name="username" placeholder="Почта" th:field="*{email}">
 
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></span>
+                    <input type="password" name="password" placeholder="Пароль" th:field="*{password}">
 
-    </div>
+                    <span th:text="${passwordError}" class="error-message"></span>
+                    <input type="password" name="password-confirm" placeholder="Повторите пароль" th:field="*{passwordConfirm}">
 
-    <div class="footer">
-        <div>
-            <p class="author">© Soneech, 2023</p>
+                    <input type="submit" class="button button-reg" value="Зарегистрироваться">
+
+                    <a href="/login" class="links">Войти</a>
+                </form>
+            </div>
+
+            <div class="footer">
+                <div>
+                    <p class="author">© Soneech, 2023</p>
+                </div>
+                <div class="links">
+                    <a class="github" href="https://github.com/Soneech">
+                        <img th:src="@{/icon/github.png}" class="links-img github-img">
+                    </a>
+                    <a class="vk" href="https://vk.com/soneech">
+                        <img th:src="@{/icon/vk.png}" class="links-img vk-img">
+                    </a>
+                    <a class="telegram" href="https://telegram.me/sonechous">
+                        <img th:src="@{/icon/telegram.png}" class="links-img telegram-img">
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="links">
-            <a class="github" href="https://github.com/Soneech">
-                <img th:src="@{/icon/github.png}" class="links-img github-img">
-            </a>
-            <a class="vk" href="https://vk.com/soneech">
-                <img th:src="@{/icon/vk.png}" class="links-img vk-img">
-            </a>
-            <a class="telegram" href="https://telegram.me/sonechous">
-                <img th:src="@{/icon/telegram.png}" class="links-img telegram-img">
-            </a>
-        </div>
-    </div>
     </body>
 </html>

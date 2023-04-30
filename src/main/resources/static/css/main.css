@@ -3,6 +3,10 @@
     font-size: 16px;
 }
 
+html, body {
+    height: 100%;
+}
+
 .header {
     position: fixed;
     left: 0;
@@ -13,6 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 5;
 }
 
 .logo {
@@ -54,21 +59,26 @@
 }
 
 .main {
-    margin-top: 100px;
-    width: 80%;
-    height: 100%;
+    position: relative;
+    min-height: 100%;
+}
+
+.content {
+    padding-top: 110px;
+    padding-bottom: 110px;
 }
 
 .footer {
     height: 70px;
-    width: 100%;
+    width: 101.1%;
     background: linear-gradient(to right, #ff8000, #fdc659);
     display: flex;
     align-items: center;
     justify-content: space-around;
     position: absolute;
+    z-index: 0;
     bottom: 0;
-    left: 0;
+    left: -8px;
 }
 
 .links {
@@ -102,7 +112,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    background-color: rgba(238, 238, 238, 0.47);
+    background-color: #eeeeee77;
     border-radius: 15px;
 }
 

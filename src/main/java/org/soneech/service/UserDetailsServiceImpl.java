@@ -1,6 +1,6 @@
 package org.soneech.service;
 
-import org.soneech.domain.User;
+import org.soneech.security.User;
 import org.soneech.repository.UserRepository;
 import org.soneech.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;

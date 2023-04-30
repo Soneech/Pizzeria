@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+    <html lang="ru" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Авторизация</title>
+        <title>Главная</title>
         <link rel="stylesheet" th:href="@{/styles/css/main.css}">
+        <link rel="stylesheet" th:href="@{/styles/css/pizza.css}">
     </head>
     <body>
         <div class="header">
@@ -13,20 +14,25 @@
                 </a>
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
+            <div class="auth">
+                <a class="sign-in auth-links" th:href="@{/login}">Войти</a>
+                <a class="sign-up auth-links" th:href="@{/registration}">Зарегистрироваться</a>
+                <a class="username auth-links"></a>
+            </div>
         </div>
 
-        <div class="form-block main">
-
+        <div class="main">
             <div class="content">
-                <p class="head-text">Вход в аккаунт</p>
-                <form action="/login" method="post" class="form">
-                    <input type="email" name="username" placeholder="Почта">
-                    <input type="password" name="password" placeholder="Пароль">
+                <div class="pizza-grid">
+                    <div class="pizza-block" th:each="pizza: ${pizzas}">
+                        <a class="pizza-link" th:href="@{/pizza/{id}(id=${pizza.getId()})}">
+                            <img class="pizza-image" th:src="@{/image/pizza/{file}(file=${pizza.getImage().getFileName() + img_extension})}">
+                            <p class="pizza-name" th:text="${pizza.getName()}"/>
+                            <p class="pizza-price" th:text="${pizza.getPrice()} + 'р'"/>
+                        </a>
+                    </div>
+                </div>
 
-                    <input type="submit" class="button" value="Войти">
-
-                    <a href="/registration" class="links">Зарегистрироваться</a>
-                </form>
             </div>
 
             <div class="footer">

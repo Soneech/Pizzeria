@@ -1,6 +1,5 @@
 package org.soneech.security;
 
-import org.soneech.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

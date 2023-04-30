@@ -1,0 +1,32 @@
+.pizza-image {
+    width: 320px;
+    height: 320px;
+}
+
+.pizza-block {
+    display: flex;
+    width: 380px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 3px 3px 10px 10px rgba(201, 201, 201, 0.46);
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.pizza-link {
+    text-decoration: none;
+    color: black;
+}
+
+.pizza-link p {
+    font-size: 22px;
+}
+
+.pizza-grid {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: auto;
+}

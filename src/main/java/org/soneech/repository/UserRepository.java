@@ -1,6 +1,6 @@
 package org.soneech.repository;
 
-import org.soneech.domain.User;
+import org.soneech.security.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

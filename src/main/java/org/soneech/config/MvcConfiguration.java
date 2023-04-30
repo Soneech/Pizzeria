@@ -14,5 +14,8 @@ public class MvcConfiguration implements WebMvcConfigurer {
         registry
                 .addResourceHandler("/icon/**")
                 .addResourceLocations("classpath:/static/icon/");
+        registry
+                .addResourceHandler("/image/pizza/**")
+                .addResourceLocations("classpath:/static/image/pizza/");
     }
 }
