@@ -23,11 +23,11 @@
                 <a class="sign-up auth-links" th:href="@{/registration}" sec:authorize="isAnonymous()">
                     Зарегистрироваться
                 </a>
-                <a class="profile auth-links" th:href="@{/users}" sec:authorize="isAuthenticated()">
-                    Профиль
+                <a class="profile" th:href="@{/users}" sec:authorize="isAuthenticated()">
+                    <img th:src="@{/icon/profile.png}" class="links-img profile-img">
                 </a>
-                <a class="basket auth-links" th:href="@{/users/basket}" sec:authorize="isAuthenticated()">
-                    Корзина
+                <a class="basket" th:href="@{/users/basket}" sec:authorize="isAuthenticated()">
+                    <img th:src="@{/icon/basket.png}" class="links-img basket-img">
                 </a>
             </div>
         </div>

@@ -23,6 +23,13 @@
                 <a class="sign-up auth-links" th:href="@{/registration}" sec:authorize="isAnonymous()">
                     Зарегистрироваться
                 </a>
+                <a class="profile" th:href="@{/users}" sec:authorize="isAuthenticated()">
+                    <img th:src="@{/icon/profile.png}" class="links-img profile-img">
+                </a>
+                <a class="basket" th:href="@{/users/basket}" sec:authorize="isAuthenticated()">
+                    <img th:src="@{/icon/basket.png}" class="links-img basket-img">
+                </a>
+
                 <a class="username auth-links"></a>
             </div>
         </div>
