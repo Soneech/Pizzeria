@@ -2,23 +2,24 @@ package org.soneech.service;
 
 import org.soneech.security.User;
 import org.soneech.repository.UserRepository;
-import org.soneech.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(UserRepository userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public User loadUserById(long id) {
+    public User loadUserById(Long id) {
         return userRepository.getById(id);
     }
 
@@ -26,9 +27,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
-        return new UserDetailsImpl(user);
+        return userRepository.findByEmail(email);
     }
 }

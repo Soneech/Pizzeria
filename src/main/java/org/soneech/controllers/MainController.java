@@ -2,6 +2,7 @@ package org.soneech.controllers;
 
 import org.soneech.models.Image;
 import org.soneech.service.PizzaService;
+import org.soneech.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

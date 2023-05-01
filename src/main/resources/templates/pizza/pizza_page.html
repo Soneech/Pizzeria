@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <meta charset="UTF-8">
         <title th:text="${pizza.getName()}"></title>
@@ -14,6 +16,15 @@
                 </a>
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
+            <div class="auth">
+                <a class="sign-in auth-links" th:href="@{/login}" sec:authorize="isAnonymous()">
+                    Войти
+                </a>
+                <a class="sign-up auth-links" th:href="@{/registration}" sec:authorize="isAnonymous()">
+                    Зарегистрироваться
+                </a>
+                <a class="username auth-links"></a>
+            </div>
         </div>
 
         <div class="main">
@@ -27,7 +38,14 @@
                         <h2 class="pizza-name" th:text="${pizza.getName()}"/>
                         <p class="pizza-price" th:text="${pizza.getPrice()} + 'р'"/>
                         <p class="pizza-description" th:text="${pizza.getDescription()}"/>
-                        <input type="button" class="button" value="В корзину"/>
+                        <input type="button" class="button" value="В корзину" sec:authorize="isAuthenticated()"/>
+                        <p sec:authorize="isAnonymous()">
+                            Хотите заказать?
+                            <a th:href="@{/registration}"> Зарегистрируйтесь </a>
+                            или
+                            <a th:href="@{/login}">авторизуйтесь </a>
+                            , если вы уже с нами :)
+                        </p>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-    <html lang="ru" xmlns:th="http://www.thymeleaf.org">
+    <html lang="ru"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <meta charset="UTF-8">
         <title>Главная</title>
@@ -15,9 +17,18 @@
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
             <div class="auth">
-                <a class="sign-in auth-links" th:href="@{/login}">Войти</a>
-                <a class="sign-up auth-links" th:href="@{/registration}">Зарегистрироваться</a>
-                <a class="username auth-links"></a>
+                <a class="sign-in auth-links" th:href="@{/login}" sec:authorize="isAnonymous()">
+                    Войти
+                </a>
+                <a class="sign-up auth-links" th:href="@{/registration}" sec:authorize="isAnonymous()">
+                    Зарегистрироваться
+                </a>
+                <a class="profile auth-links" th:href="@{/users}" sec:authorize="isAuthenticated()">
+                    Профиль
+                </a>
+                <a class="basket auth-links" th:href="@{/users/basket}" sec:authorize="isAuthenticated()">
+                    Корзина
+                </a>
             </div>
         </div>
 

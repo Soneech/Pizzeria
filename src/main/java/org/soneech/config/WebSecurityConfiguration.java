@@ -1,6 +1,6 @@
 package org.soneech.config;
 
-import org.soneech.service.UserDetailsServiceImpl;
+import org.soneech.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
-    private final UserDetailsServiceImpl userDetailsService;
+    private final UserService userDetailsService;
 
     @Autowired
-    public WebSecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
+    public WebSecurityConfiguration(UserService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -26,6 +26,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
+                    .antMatchers("/admin").hasAnyAuthority("ADMIN")
                     .antMatchers("/", "/login", "/registration", "/pizza/*",
                             "/styles/css/**", "/icon/**", "/image/**/**").permitAll()
                     .anyRequest().authenticated()

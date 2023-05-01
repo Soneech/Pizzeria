@@ -7,18 +7,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class RegistrationService {
     private final UserRepository userRepository;
+    private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public RegistrationService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public RegistrationService(UserRepository userRepository,
+                               PasswordEncoder passwordEncoder, RoleService roleService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
     }
 
     @Transactional
@@ -32,6 +36,8 @@ public class RegistrationService {
         }
         else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(Collections.singleton(roleService.getRoleById(1L)));
+
             userRepository.save(user);
         }
 
