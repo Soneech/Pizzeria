@@ -23,6 +23,7 @@
                     <input type="email" name="username" placeholder="Почта">
                     <input type="password" name="password" placeholder="Пароль">
 
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                     <input type="submit" class="button" value="Войти">
 
                     <a href="/registration" class="links">Зарегистрироваться</a>

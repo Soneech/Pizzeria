@@ -9,6 +9,11 @@ spring:
         enabled: true
   jpa:
     generateDdl: true
+  session:
+    storeType: jdbc
+    jdbc:
+      initializeSchema: always
+      tableName: spring_session
 
 security:
   basic:

@@ -33,6 +33,7 @@
                     <span th:text="${passwordError}" class="error-message"></span>
                     <input type="password" name="password-confirm" placeholder="Повторите пароль" th:field="*{passwordConfirm}">
 
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                     <input type="submit" class="button button-reg" value="Зарегистрироваться">
 
                     <a href="/login" class="links">Войти</a>

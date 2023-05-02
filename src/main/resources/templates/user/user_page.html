@@ -22,7 +22,8 @@
 
         <div class="main">
             <div class="content">
-                <form action="/logout">
+                <form th:action="@{/logout}">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                     <input type="submit" class="button" value="Выйти">
                 </form>
 
