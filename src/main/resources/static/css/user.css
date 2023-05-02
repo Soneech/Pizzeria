@@ -1,0 +1,25 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
+
+.user-profile-head {
+    font-size: 20px;
+}
+
+.user-info {
+    height: 320px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 25px;
+    box-shadow: 2px 2px 13px 7px rgba(201, 201, 201, 0.36);
+    border-radius: 15px;
+}
+
+form {
+    text-align: center;
+}

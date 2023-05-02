@@ -1,19 +1,26 @@
 package org.soneech.controllers;
 
+import org.soneech.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
-    @GetMapping
-    public String userPage() {
-        return "user/user_page";
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping("/basket")
-    public String userBasketPage() {
-        return "user/basket";
+    @GetMapping("/profile")
+    public String userPage(Model model, Authentication authentication) {
+        model.addAttribute("user", userService.getAuthenticatedUser(authentication));
+        return "user/user_page";
     }
 }

@@ -23,7 +23,7 @@
                 <a class="sign-up auth-links" th:href="@{/registration}" sec:authorize="isAnonymous()">
                     Зарегистрироваться
                 </a>
-                <a class="profile" th:href="@{/users}" sec:authorize="isAuthenticated()">
+                <a class="profile" th:href="@{/user/profile}" sec:authorize="isAuthenticated()">
                     <img th:src="@{/icon/profile.png}" class="links-img profile-img">
                 </a>
                 <a class="basket" th:href="@{/users/basket}" sec:authorize="isAuthenticated()">
@@ -45,7 +45,10 @@
                         <h2 class="pizza-name" th:text="${pizza.getName()}"/>
                         <p class="pizza-price" th:text="${pizza.getPrice()} + 'р'"/>
                         <p class="pizza-description" th:text="${pizza.getDescription()}"/>
-                        <input type="button" class="button" value="В корзину" sec:authorize="isAuthenticated()"/>
+                        <form th:method="POST" th:action="@{/basket/{id}(id=${pizza.getId()})}">
+                            <input type="button" class="button" value="В корзину" sec:authorize="isAuthenticated()"/>
+                        </form>
+
                         <p sec:authorize="isAnonymous()">
                             Хотите заказать?
                             <a th:href="@{/registration}"> Зарегистрируйтесь </a>

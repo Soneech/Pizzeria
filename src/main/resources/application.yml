@@ -8,6 +8,8 @@ spring:
       filter:
         enabled: true
   jpa:
+    hibernate:
+      ddlAuto: update
     generateDdl: true
   session:
     storeType: jdbc
