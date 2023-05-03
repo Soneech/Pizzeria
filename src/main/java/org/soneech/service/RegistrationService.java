@@ -1,7 +1,6 @@
 package org.soneech.service;
 
-import org.soneech.security.User;
-import org.soneech.repository.UserRepository;
+import org.soneech.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

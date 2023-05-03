@@ -1,7 +1,7 @@
 package org.soneech.service;
 
 import org.soneech.repository.RoleRepository;
-import org.soneech.security.Role;
+import org.soneech.models.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

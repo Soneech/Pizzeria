@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <title>Корзина</title>
@@ -23,7 +23,19 @@
 
         <div class="main">
             <div class="content">
+                <div class="basket">
+                    <div class="product-cart" th:each="data: ${basketData}">
+                        <p class="pizza-name" th:text="${data.key.getName()}"></p>
+                        <p class="pizza-price" th:text="${data.key.getPrice()} + 'р'"></p>
 
+                        <div class="count-block">
+                            <p class="count" th:text="${data.value}"></p>
+                            <form th:method="POST" th:action="@{/user/basket/edit/{id}(id=${data.key.getId()})}">
+                                <input type="submit" class="round-button" value="+">
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="footer">

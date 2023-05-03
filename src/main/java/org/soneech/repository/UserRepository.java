@@ -1,6 +1,6 @@
 package org.soneech.repository;
 
-import org.soneech.security.User;
+import org.soneech.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

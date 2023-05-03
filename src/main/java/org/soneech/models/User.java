@@ -1,4 +1,4 @@
-package org.soneech.security;
+package org.soneech.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.*;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "id")
     private Long id;
 
     @NotEmpty(message = "Имя не может быть пустым")

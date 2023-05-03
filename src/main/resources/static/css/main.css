@@ -133,6 +133,7 @@ input {
     background-color: #ef8b29;
     color: white;
     text-shadow: 1px 1px 5px white;
+    cursor: pointer;
 }
 
 .button-reg {
