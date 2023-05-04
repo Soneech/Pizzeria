@@ -1,6 +1,6 @@
 package org.soneech.controllers;
 
-import org.soneech.security.User;
+import org.soneech.models.User;
 import org.soneech.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -21,7 +21,7 @@ public class PizzaService {
         return pizzaRepository.findAll();
     }
 
-    public Optional<Pizza> getPizzaById(Long id) {
-        return pizzaRepository.findById(id);
+    public Pizza getPizzaById(Long id) {
+        return pizzaRepository.getById(id);
     }
 }

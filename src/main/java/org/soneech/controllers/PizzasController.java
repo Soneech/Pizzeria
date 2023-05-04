@@ -21,7 +21,7 @@ public class PizzasController {
 
     @GetMapping("/{id}")
     public String pizzaPage(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("pizza", pizzaService.getPizzaById(id).get());
+        model.addAttribute("pizza", pizzaService.getPizzaById(id));
         model.addAttribute("img_extension", Image.EXTENSION);
         return "pizza/pizza_page";
     }
