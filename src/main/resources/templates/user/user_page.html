@@ -27,7 +27,7 @@
                 <div class="user-info">
                     <p class="user-profile-head">Ваши данные</p>
                     <p class="username">Имя: <span th:text="${user.getName()}"></span></p>
-                    <p class="username">Почта: <span th:text="${user.getEmail()}"></span></p>
+                    <p class="phone-number">Телефон: <span th:text="${user.getPhoneNumber()}"></span></p>
 
                     <form th:action="@{/logout}">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>

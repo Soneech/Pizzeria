@@ -17,4 +17,8 @@ public class RoleService {
     public Role getRoleById(Long id) {
         return roleRepository.getById(id);
     }
+
+    public Role getRoleByName(String name) {
+        return roleRepository.findByName(name);
+    }
 }

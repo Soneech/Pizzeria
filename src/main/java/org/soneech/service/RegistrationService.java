@@ -30,12 +30,15 @@ public class RegistrationService {
         if (!user.getPassword().equals(user.getPasswordConfirm())) {
             report.put("passwordError", "Пароли не совпадают");
         }
-        if (userService.loadUserByUsername(user.getEmail()) != null) {
-            report.put("existError", "Пользователь с такой почтой уже существует");
+        if (userService.getUserByPhoneNumber(user.getPhoneNumber()) != null) {
+            report.put("existPhoneError", "Пользователь с таким номером телефона уже существует");
+        }
+        if (userService.getUserByName(user.getName()) != null) {
+            report.put("existNameError", "Пользователь с таким именем уже существует");
         }
         else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setRoles(Collections.singleton(roleService.getRoleById(1L)));
+            user.setRoles(Collections.singleton(roleService.getRoleById(2L)));
 
             userService.saveUser(user);
         }

@@ -1,5 +1,6 @@
 package org.soneech.service;
 
+import org.soneech.models.Role;
 import org.soneech.models.User;
 import org.soneech.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,16 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    public User loadUserById(Long id) {
+    public User getUserById(Long id) {
         return userRepository.getById(id);
     }
 
-    public User loadUserByName(String name) {
+    public User getUserByName(String name) {
         return userRepository.findByName(name);
+    }
+
+    public User getUserByPhoneNumber(String phoneNumber) {
+        return userRepository.findByPhoneNumber(phoneNumber);
     }
 
     public void saveUser(User user) {
@@ -37,11 +42,15 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByName(username);
     }
 
     public User getAuthenticatedUser(Authentication authentication) {
-        return loadUserByName(authentication.getName());
+        return getUserByName(authentication.getName());
+    }
+
+    public List<User> getUsersByRoles(List<Role> roles) {
+        return userRepository.findByRoles(roles);
     }
 }
