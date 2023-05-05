@@ -62,9 +62,11 @@ public class BasketDataService {
         }
 
         else {
+            basketData = new BasketData();
             basketData.setUser(user);
             basketData.setPizza(pizza);
             basketData.setCount(1);
+            basketData.setCost(pizza.getPrice());
             basketDataRepository.save(basketData);
         }
     }
@@ -104,7 +106,7 @@ public class BasketDataService {
         basketData.setCost(basketData.getCost() - basketData.getPizza().getPrice());
     }
 
-    public void deletePizzaFromBasket(BasketData basketData) {
-
+    public void deletePizzaFromBasket(Long id) {
+        basketDataRepository.deleteById(id);
     }
 }

@@ -1,0 +1,34 @@
+.basket {
+    text-align: center;
+}
+
+.head-text {
+    font-size: 22px;
+    margin-bottom: 40px;
+}
+
+.info-text {
+    font-size: 18px;
+}
+
+.product-cart {
+    display: flex;
+    padding: 20px;
+    box-shadow: 2px 2px 13px 7px rgba(201, 201, 201, 0.36);
+    border-radius: 15px;
+    width: 400px;
+    margin: 30px auto;
+}
+
+.pizza-image {
+    padding: 20px;
+    width: 180px;
+    height: 180px;
+    margin: auto;
+}
+
+.control-button {
+    margin: 10px;
+    width: 90px;
+}
+

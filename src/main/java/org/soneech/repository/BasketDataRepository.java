@@ -14,4 +14,6 @@ public interface BasketDataRepository extends JpaRepository<BasketData, Long> {
 
     @Query("SELECT b FROM BasketData b WHERE b.user.id = ?1 AND b.pizza.id = ?2")
     BasketData findCertainBasketDataForUser(Long userId, Long pizzaId);
+
+    void deleteById(Long id);
 }

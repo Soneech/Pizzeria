@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <title>Профиль</title>
+        <title>Оформление заказа</title>
         <link rel="stylesheet" th:href="@{/styles/css/main.css}">
-        <link rel="stylesheet" th:href="@{/styles/css/user.css}">
+        <link rel="stylesheet" th:href="@{/styles/css/pizza.css}">
         <link rel="icon" type="image/png" th:href="@{/icon/pizza.png}"/>
     </head>
     <body>
@@ -24,16 +24,7 @@
 
         <div class="main">
             <div class="content">
-                <div class="user-info">
-                    <p class="user-profile-head">Ваши данные</p>
-                    <p class="username">Имя: <span th:text="${user.getName()}"></span></p>
-                    <p class="username">Почта: <span th:text="${user.getEmail()}"></span></p>
 
-                    <form th:action="@{/logout}">
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                        <input type="submit" class="button" value="Выйти">
-                    </form>
-                </div>
             </div>
 
             <div class="footer">
