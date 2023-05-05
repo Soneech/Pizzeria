@@ -25,16 +25,24 @@
             <div class="content">
                 <div class="basket">
                     <div class="product-cart" th:each="data: ${basketData}">
-                        <p class="pizza-name" th:text="${data.key.getName()}"></p>
-                        <p class="pizza-price" th:text="${data.key.getPrice()} + 'р'"></p>
+                        <p class="pizza-name" th:text="${data.getPizza().getName()}"></p>
+                        <p class="pizza-price">Цена за одну: <span th:text="${data.getPizza().getPrice()}"/>р</p>
+                        <p>Количество: <span class="pizza-count" th:text="${data.getCount()}"/></p>
+                        <p class="pizza-cost">Итого: <span th:text="${data.getCost()}"/>р</p>
 
-                        <div class="count-block">
-                            <p class="count" th:text="${data.value}"></p>
-                            <form th:method="POST" th:action="@{/user/basket/edit/{id}(id=${data.key.getId()})}">
+                        <div class="count-buttons-block">
+                            <form th:method="PATCH" th:action="@{/user/basket/increase/{id}(id=${data.getId()})}">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                                 <input type="submit" class="round-button" value="+">
+                            </form>
+                            <form th:method="PATCH" th:action="@{/user/basket/decrease/{id}(id=${data.getId()})}">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                <input type="submit" class="round-button" value="-">
                             </form>
                         </div>
                     </div>
+
+                    <p>Итоговая цена: <span class="total-cost" th:text="${totalCost}"/>р</p>
                 </div>
             </div>
 

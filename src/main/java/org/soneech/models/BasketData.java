@@ -25,4 +25,5 @@ public class BasketData {
     private Pizza pizza;
 
     private Integer count;
+    private Integer cost;
 }

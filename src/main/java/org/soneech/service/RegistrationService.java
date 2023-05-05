@@ -39,7 +39,6 @@ public class RegistrationService {
 
             userService.saveUser(user);
         }
-
         return report;
     }
 }
