@@ -10,5 +10,4 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("org.soneech.repository")
 
 public class PizzeriaConfiguration {
-
 }

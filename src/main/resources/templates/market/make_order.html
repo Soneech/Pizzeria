@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Оформление заказа</title>
         <link rel="stylesheet" th:href="@{/styles/css/main.css}">
-        <link rel="stylesheet" th:href="@{/styles/css/pizza.css}">
+        <link rel="stylesheet" th:href="@{/styles/css/basket.css}">
         <link rel="icon" type="image/png" th:href="@{/icon/pizza.png}"/>
     </head>
     <body>
@@ -16,6 +16,9 @@
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
             <div class="auth">
+                <a class="profile" th:href="@{/user/profile}">
+                    <img th:src="@{/icon/profile.png}" class="links-img profile-img">
+                </a>
                 <a class="basket" th:href="@{/user/basket}">
                     <img th:src="@{/icon/basket.png}" class="links-img basket-img">
                 </a>
@@ -24,7 +27,54 @@
 
         <div class="main">
             <div class="content">
+                <p class="head-text">Оформление заказа</p>
 
+                <form th:method="POST" th:action="@{/user/orders}" th:object="${address}">
+                    <p class="info-text">Укажите адрес доставки</p>
+
+                    <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="error-message"></span>
+                    <input type="text" name="city" placeholder="Город" th:field="*{city}">
+
+                    <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}" class="error-message"></span>
+                    <input type="text" name="street" placeholder="Улица" th:field="*{street}">
+
+                    <span th:if="${#fields.hasErrors('houseNumber')}" th:errors="*{houseNumber}"
+                          class="error-message"></span>
+                    <input type="text" name="house_number"
+                           placeholder="Номер дома, корпус (если есть)" th:field="*{houseNumber}">
+
+                    <textarea name="details" th:field="*{details}"
+                              placeholder="Здесь вы можете указать дополнительную информацию"></textarea>
+
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <input type="submit" class="button" value="Оформить заказ">
+                </form>
+
+                <p class="head-text">Информация о заказе</p>
+                <p class="info-text">Заказываемые товары:</p>
+
+                <div class="product-cart" th:each="data: ${basketData}" th:id="${data.getId()}">
+                    <div class="pizza-image-block">
+                        <img class="pizza-image"
+                             th:src="@{/image/pizza/{file}(file=${data.getPizza().getImage().getFileName()
+                                                + imgExtension})}">
+                    </div>
+
+                    <div class="product-into">
+                        <p class="pizza-name" th:text="${data.getPizza().getName()}"></p>
+                        <p class="pizza-price">Цена за одну: <span th:text="${data.getPizza().getPrice()}"/>р</p>
+                        <p>Количество: <span class="pizza-count" th:text="${data.getCount()}"/></p>
+                        <p class="pizza-cost">Итого: <span th:text="${data.getCost()}"/>р</p>
+                    </div>
+                </div>
+
+                <p class="info-text">Итоговая цена: <span class="total-cost" th:text="${totalCost}"/>р</p>
+
+                <div class="user-info">
+                    <p class="info-text">Информация о покупателе:</p>
+                    <p class="username">Имя: <span th:text="${user.getName()}"></span></p>
+                    <p class="phone-number">Телефон: <span th:text="${user.getPhoneNumber()}"></span></p>
+                </div>
             </div>
 
             <div class="footer">

@@ -9,6 +9,7 @@ import org.soneech.service.PizzaService;
 import org.soneech.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,20 +19,17 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user")
-public class MarketController {
+public class BasketController {
     private final UserService userService;
     private final PizzaService pizzaService;
     private final BasketDataService basketDataService;
-    private final BasketDataRepository basketDataRepository;
 
     @Autowired
-    public MarketController(UserService userService,
-                            PizzaService pizzaService, BasketDataService basketDataService,
-                            BasketDataRepository basketDataRepository) {
+    public BasketController(UserService userService,
+                            PizzaService pizzaService, BasketDataService basketDataService) {
         this.userService = userService;
         this.pizzaService = pizzaService;
         this.basketDataService = basketDataService;
-        this.basketDataRepository = basketDataRepository;
     }
 
     @GetMapping("/basket")
@@ -68,15 +66,5 @@ public class MarketController {
     public String deleteProductFromBasket(@PathVariable("basketDataId") Long basketDataId) {
         basketDataService.deletePizzaFromBasket(basketDataId);
         return "redirect:/user/basket";
-    }
-
-    @PostMapping("/order")
-    public String makeOrder(Authentication authentication, Model model) {
-        User user = userService.getAuthenticatedUser(authentication);
-        List<BasketData> basketData = basketDataRepository.findAllBasketDataForUser(user.getId());
-        model.addAttribute("basketData", basketData);
-        model.addAttribute("user", user);
-
-        return "/market/make_order";
     }
 }

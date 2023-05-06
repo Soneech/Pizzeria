@@ -56,11 +56,18 @@
                         </div>
                     </div>
 
-                    <p class="info-text">Итоговая цена: <span class="total-cost" th:text="${totalCost}"/>р</p>
+                    <p class="info-text" th:if="${totalCost != 0}">
+                        Итоговая цена:
+                        <span class="total-cost" th:text="${totalCost}"/>
+                        р
+                    </p>
 
-                    <form th:method="POST" th:action="@{/user/order}">
-                        <input type="submit" class="button" value="Оформить заказ"></input>
+                    <form th:method="GET" th:action="@{/user/orders/new}" th:if="${totalCost != 0}">
+                        <input type="submit" class="button" value="Оформить заказ"/>
                     </form>
+
+                    <p class="info-text" th:if="${totalCost == 0}">Корзина пуста :(</p>
+
                 </div>
             </div>
 
