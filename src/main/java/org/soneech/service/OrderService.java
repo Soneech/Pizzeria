@@ -18,17 +18,23 @@ public class OrderService {
     private final OrderDataRepository orderDataRepository;
     private final UserService userService;
     private final BasketDataRepository basketDataRepository;
+    private final BasketDataService basketDataService;
     private final AddressRepository addressRepository;
 
     @Autowired
     public OrderService(OrderRepository orderRepository, OrderDataRepository orderDataRepository,
                         UserService userService, BasketDataRepository basketDataRepository,
-                        AddressRepository addressRepository) {
+                        BasketDataService basketDataService, AddressRepository addressRepository) {
         this.orderRepository = orderRepository;
         this.orderDataRepository = orderDataRepository;
         this.userService = userService;
         this.basketDataRepository = basketDataRepository;
+        this.basketDataService = basketDataService;
         this.addressRepository = addressRepository;
+    }
+
+    public Order getOrderById(Long id) {
+        return orderRepository.getById(id);
     }
 
     public List<Order> getAllUserOrders(Authentication authentication) {
@@ -59,15 +65,17 @@ public class OrderService {
             address = addressRepository.save(address);
         }
 
+        List<BasketData> basketDataList =
+                basketDataRepository.findAllBasketDataForUser(user.getId());
+
         Order order = new Order();
         order.setUser(user);
         order.setAddress(address);
         order.setIsActive(true);
+        order.setNumber(order.hashCode()); // наверное временно :D
+        order.setCost(basketDataService.getTotalCost(basketDataList));
 
         order = orderRepository.save(order);
-
-        List<BasketData> basketDataList =
-                basketDataRepository.findAllBasketDataForUser(user.getId());
 
         for (var basketData: basketDataList) {
             basketDataRepository.deleteById(basketData.getId());

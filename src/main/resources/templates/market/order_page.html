@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Заказ</title>
+        <link rel="stylesheet" th:href="@{/styles/css/main.css}">
+        <link rel="stylesheet" th:href="@{/styles/css/basket.css}">
+        <link rel="stylesheet" th:href="@{/styles/css/order.css}">
+        <link rel="stylesheet" th:href="@{/styles/css/make_order.css}">
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+                <a th:href="@{/}">
+                    <img class="logo-icon" th:src="@{/icon/pizza.png}">
+                </a>
+                <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
+            </div>
+            <div class="auth">
+                <a class="profile" th:href="@{/user/profile}">
+                    <img th:src="@{/icon/profile.png}" class="links-img profile-img">
+                </a>
+                <a class="basket" th:href="@{/user/basket}">
+                    <img th:src="@{/icon/basket.png}" class="links-img basket-img">
+                </a>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="content">
+                <p class="head-text">Информация о заказе</p>
+                <div class="order-cart">
+                    <h3>Заказ № <span th:text="${order.getNumber()}"></span></h3>
+                    <p>
+                        Статус заказа:
+                        <span th:if="${order.getIsActive()}"> активный</span>
+                        <span th:if="${!order.getIsActive()}"> завершённый</span>
+                    </p>
+                    <div class="address">
+                        <p>Адрес доставки:</p>
+                        <p th:text="${'г. ' + order.getAddress().getCity()}"></p>
+                        <p th:text="${order.getAddress().getStreet() + ', ' +
+                                                                order.getAddress().getHouseNumber()}"></p>
+                        <p>Детали: <span th:text="${order.getAddress().getDetails()}"/></p>
+                    </div>
+                </div>
+
+                <p class="info-text">Заказанные товары:</p>
+
+                <div class="products">
+                    <div class="product-cart" th:each="product: ${order.getOrdersData()}">
+                        <div class="pizza-image-block">
+                            <img class="pizza-image"
+                                 th:src="@{/image/pizza/{file}(file=${product.getPizza().getImage().getFileName()
+                                                + imgExtension})}">
+                        </div>
+
+                        <div class="product-into">
+                            <p class="pizza-name" th:text="${product.getPizza().getName()}"></p>
+                            <p class="pizza-price">Цена за одну: <span th:text="${product.getPizza().getPrice()}"/>р</p>
+                            <p>Количество: <span class="pizza-count" th:text="${product.getCount()}"/></p>
+                            <p class="pizza-cost">Итого: <span th:text="${product.getCost()}"/>р</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="info-text">Итоговая цена: <span class="total-cost" th:text="${order.getCost()}"/>р</p>
+            </div>
+
+            <div class="footer">
+                <div>
+                    <p class="author">© Soneech, 2023</p>
+                </div>
+                <div class="links">
+                    <a class="github" href="https://github.com/Soneech">
+                        <img th:src="@{/icon/github.png}" class="links-img github-img">
+                    </a>
+                    <a class="vk" href="https://vk.com/soneech">
+                        <img th:src="@{/icon/vk.png}" class="links-img vk-img">
+                    </a>
+                    <a class="telegram" href="https://telegram.me/sonechous">
+                        <img th:src="@{/icon/telegram.png}" class="links-img telegram-img">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -7,7 +7,7 @@
         <link rel="icon" type="image/png" th:href="@{/icon/pizza.png}"/>
     </head>
     <body>
-        <div class="header">S
+        <div class="header">
             <div class="logo">
                 <a th:href="@{/}">
                     <img class="logo-icon" th:src="@{/icon/pizza.png}">
@@ -27,7 +27,7 @@
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                     <input type="submit" class="button" value="Войти">
 
-                    <a href="/registration" class="links">Зарегистрироваться</a>
+                    <a href="/registration" class="main-links">Зарегистрироваться</a>
                 </form>
             </div>
 

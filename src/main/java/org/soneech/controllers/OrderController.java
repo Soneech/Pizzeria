@@ -1,9 +1,6 @@
 package org.soneech.controllers;
 
-import org.soneech.models.Address;
-import org.soneech.models.BasketData;
-import org.soneech.models.Image;
-import org.soneech.models.User;
+import org.soneech.models.*;
 import org.soneech.repository.BasketDataRepository;
 import org.soneech.service.BasketDataService;
 import org.soneech.service.OrderService;
@@ -13,10 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -39,13 +33,20 @@ public class OrderController {
     }
 
     @GetMapping("/orders/active")
-    public String activeOrdersPage() {
-        return "/market/active_orders";
+    public String activeOrdersPage(Model model, Authentication authentication) {
+        List<Order> orders = orderService.getActiveUserOrders(authentication);
+        model.addAttribute("orders", orders);
+        model.addAttribute("message",
+                "Здесь отображаются ваши активные заказы. Мы свяжемся с вами по указанному номеру :)");
+        return "/market/orders";
     }
 
     @GetMapping("/orders/completed")
-    public String completedOrders() {
-        return "/market/completed_orders";
+    public String completedOrders(Model model, Authentication authentication) {
+        List<Order> orders = orderService.getCompletedUserOrders(authentication);
+        model.addAttribute("orders", orders);
+        model.addAttribute("message", "Ваши завершённые заказы");
+        return "/market/orders";
     }
 
     @GetMapping("/orders/new")
@@ -77,5 +78,24 @@ public class OrderController {
         }
         setParametersForCreateOrderPage(model, authentication);
         return "/market/make_order";
+    }
+
+    public void prepareOrderPage(Long id, Model model) {
+        Order order = orderService.getOrderById(id);
+
+        model.addAttribute("order", order);
+        model.addAttribute("imgExtension", Image.EXTENSION);
+    }
+
+    @GetMapping("/orders/active/{id}")
+    public String activeOrder(@PathVariable Long id, Model model) {
+        prepareOrderPage(id, model);
+        return "/market/order_page";
+    }
+
+    @GetMapping("/orders/completed/{id}")
+    public String completedOrder(@PathVariable Long id, Model model) {
+        prepareOrderPage(id, model);
+        return "/market/order_page";
     }
 }

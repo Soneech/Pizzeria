@@ -2,10 +2,9 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Профиль</title>
+        <title>Активные заказы</title>
         <link rel="stylesheet" th:href="@{/styles/css/main.css}">
-        <link rel="stylesheet" th:href="@{/styles/css/user.css}">
-        <link rel="icon" type="image/png" th:href="@{/icon/pizza.png}"/>
+        <link rel="stylesheet" th:href="@{/styles/css/order.css}">
     </head>
     <body>
         <div class="header">
@@ -16,6 +15,9 @@
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
             <div class="auth">
+                <a class="profile" th:href="@{/user/profile}">
+                    <img th:src="@{/icon/profile.png}" class="links-img profile-img">
+                </a>
                 <a class="basket" th:href="@{/user/basket}">
                     <img th:src="@{/icon/basket.png}" class="links-img basket-img">
                 </a>
@@ -24,18 +26,27 @@
 
         <div class="main">
             <div class="content">
-                <div class="user-info">
-                    <p class="user-profile-head">Ваши данные</p>
-                    <p class="username">Имя: <span th:text="${user.getName()}"></span></p>
-                    <p class="phone-number">Телефон: <span th:text="${user.getPhoneNumber()}"></span></p>
+                <div class="orders">
+                    <p class="head-text" th:text="${message}"></p>
 
-                    <a href="/user/orders/active" class="main-links">Ваши активные заказы</a>
-                    <a href="/user/orders/completed" class="main-links">Архив заказов</a>
+                    <div class="order-cart" th:each="order: ${orders}">
+                        <h3>Заказ № <span th:text="${order.getNumber()}"/></h3>
+                        <div class="address">
+                            <p>Адрес доставки:</p>
+                            <p th:text="${'г. ' + order.getAddress().getCity()}"></p>
+                            <p th:text="${order.getAddress().getStreet() + ', ' +
+                                                                order.getAddress().getHouseNumber()}"></p>
+                            <p>Детали: <span th:text="${order.getAddress().getDetails()}"/></p>
+                        </div>
 
-                    <form th:action="@{/logout}">
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                        <input type="submit" class="button" value="Выйти">
-                    </form>
+                        <a      th:if="${order.getIsActive()}"
+                                th:href="@{/user/orders/active/{id}(id=${order.getId()})}"
+                                class="main-links">Подробнее</a>
+
+                        <a      th:if="${!order.getIsActive()}"
+                                th:href="@{/user/orders/completed/{id}(id=${order.getId()})}"
+                                class="main-links">Подробнее</a>
+                    </div>
                 </div>
             </div>
 

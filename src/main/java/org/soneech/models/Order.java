@@ -17,6 +17,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Integer number;
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
@@ -28,6 +30,8 @@ public class Order {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    private Integer cost;
+
+    @OneToMany(mappedBy = "order")
     private List<OrderData> ordersData;
 }

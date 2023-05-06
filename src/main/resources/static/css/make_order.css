@@ -1,0 +1,42 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 30px;
+    box-shadow: 2px 2px 13px 7px rgba(201, 201, 201, 0.36);
+    border-radius: 15px;
+    width: 550px;
+    height: 300px;
+    margin: auto;
+}
+
+.order-button {
+    margin: 0 auto;
+}
+
+input {
+    width: auto;
+}
+
+.user-info {
+    padding: 20px;
+    box-shadow: 2px 2px 13px 7px rgba(201, 201, 201, 0.36);
+    border-radius: 15px;
+    width: 380px;
+    height: 100px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.order-info-text {
+    margin-top: 50px;
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 70%;
+    margin: auto;
+}
