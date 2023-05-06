@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <meta charset="UTF-8">
         <title>Профиль</title>
@@ -15,9 +17,12 @@
                 </a>
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
-            <div class="auth">
-                <a class="basket" th:href="@{/user/basket}">
-                    <img th:src="@{/icon/basket.png}" class="links-img basket-img">
+            <div class="header-links-block">
+                <a class="admin header-links" th:href="@{/admin}" sec:authorize="hasAuthority('ADMIN')">
+                    Админ
+                </a>
+                <a class="basket header-links" th:href="@{/user/basket}">
+                    Корзина
                 </a>
             </div>
         </div>

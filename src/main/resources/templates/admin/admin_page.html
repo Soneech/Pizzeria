@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-  <p>Admin page!</p>
-</body>
+    <html lang="ru" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Админская</title>
+        <link rel="stylesheet" th:href="@{/styles/css/main.css}">
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+                <a th:href="@{/}">
+                    <img class="logo-icon" th:src="@{/icon/pizza.png}">
+                </a>
+                <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
+            </div>
+            <div class="header-links-block">
+                <a class="profile header-links" th:href="@{/user/profile}">
+                    Профиль
+                </a>
+                <a class="basket header-links" th:href="@{/user/basket}">
+                    Корзина
+                </a>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="content">
+                <p class="head-text">Привет, Админ! :)</p>
+
+                <div class="admin-links-block">
+                    <a href="/admin/orders/active" class="main-links">Активные заказы</a>
+                    <a href="/admin/orders/completed" class="main-links">Завершённые заказы</a>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div>
+                    <p class="author">© Soneech, 2023</p>
+                </div>
+                <div class="links">
+                    <a class="github" href="https://github.com/Soneech">
+                        <img th:src="@{/icon/github.png}" class="links-img github-img">
+                    </a>
+                    <a class="vk" href="https://vk.com/soneech">
+                        <img th:src="@{/icon/vk.png}" class="links-img vk-img">
+                    </a>
+                    <a class="telegram" href="https://telegram.me/sonechous">
+                        <img th:src="@{/icon/telegram.png}" class="links-img telegram-img">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

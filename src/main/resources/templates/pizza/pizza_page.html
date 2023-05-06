@@ -17,21 +17,26 @@
                 </a>
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
-            <div class="auth">
-                <a class="sign-in auth-links" th:href="@{/login}" sec:authorize="isAnonymous()">
+            <div class="header-links-block">
+                <a class="sign-in header-links" th:href="@{/login}" sec:authorize="isAnonymous()">
                     Войти
                 </a>
-                <a class="sign-up auth-links" th:href="@{/registration}" sec:authorize="isAnonymous()">
+                <a class="sign-up header-links" th:href="@{/registration}" sec:authorize="isAnonymous()">
                     Зарегистрироваться
                 </a>
-                <a class="profile" th:href="@{/user/profile}" sec:authorize="isAuthenticated()">
-                    <img th:src="@{/icon/profile.png}" class="links-img profile-img">
-                </a>
-                <a class="basket" th:href="@{/user/basket}" sec:authorize="isAuthenticated()">
-                    <img th:src="@{/icon/basket.png}" class="links-img basket-img">
+
+                <a class="admin header-links" th:href="@{/admin}" sec:authorize="hasAuthority('ADMIN')">
+                    Админ
                 </a>
 
-                <a class="username auth-links"></a>
+                <a class="profile header-links" th:href="@{/user/profile}" sec:authorize="isAuthenticated()">
+                    Профиль
+                </a>
+                <a class="basket header-links" th:href="@{/user/basket}" sec:authorize="isAuthenticated()">
+                    Корзина
+                </a>
+
+                <a class="username header-links"></a>
             </div>
         </div>
 

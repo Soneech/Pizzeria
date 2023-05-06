@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <meta charset="UTF-8">
         <title>Оформление заказа</title>
@@ -16,12 +18,15 @@
                 </a>
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
-            <div class="auth">
-                <a class="profile" th:href="@{/user/profile}">
-                    <img th:src="@{/icon/profile.png}" class="links-img profile-img">
+            <div class="header-links-block">
+                <a class="admin header-links" th:href="@{/admin}" sec:authorize="hasAuthority('ADMIN')">
+                    Админ
                 </a>
-                <a class="basket" th:href="@{/user/basket}">
-                    <img th:src="@{/icon/basket.png}" class="links-img basket-img">
+                <a class="profile header-links" th:href="@{/user/profile}">
+                    Профиль
+                </a>
+                <a class="basket header-links" th:href="@{/user/basket}">
+                    Корзина
                 </a>
             </div>
         </div>
@@ -31,8 +36,8 @@
                 <div class="make-order">
                     <p class="head-text">Оформление заказа</p>
 
-                    <form th:method="POST" th:action="@{/user/orders}" th:object="${address}">
-                        <p class="info-text">Укажите адрес доставки</p>
+                    <form th:method="POST" th:action="@{/user/orders}" th:object="${address}" class="address-form">
+                        <p class="head-text1">Укажите адрес доставки</p>
 
                         <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="error-message"></span>
                         <input type="text" name="city" placeholder="Город" th:field="*{city}">
@@ -55,7 +60,7 @@
 
                 <div class="order-info">
                     <p class="head-text order-info-text">Информация о заказе</p>
-                    <p class="info-text">Заказываемые товары:</p>
+                    <p class="head-text1">Заказываемые товары:</p>
 
                     <div class="products">
                         <div class="product-cart" th:each="data: ${basketData}" th:id="${data.getId()}">
@@ -74,11 +79,11 @@
                         </div>
                     </div>
 
-                    <p class="info-text">Итоговая цена: <span class="total-cost" th:text="${totalCost}"/>р</p>
+                    <p class="head-text1">Итоговая цена: <span class="total-cost" th:text="${totalCost}"/>р</p>
                 </div>
 
                 <div class="user-info">
-                    <p class="info-text">Информация о покупателе:</p>
+                    <p class="head-text1">Информация о покупателе:</p>
                     <p class="username">Имя: <span th:text="${user.getName()}"></span></p>
                     <p class="phone-number">Телефон: <span th:text="${user.getPhoneNumber()}"></span></p>
                 </div>

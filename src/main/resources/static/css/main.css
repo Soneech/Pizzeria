@@ -40,7 +40,7 @@ html, body {
     text-shadow: 1px 1px 5px white;
 }
 
-.auth {
+.header-links-block {
     color: white;
     display: flex;
     align-items: center;
@@ -52,7 +52,7 @@ html, body {
     color: #361b00;
 }
 
-.auth-links {
+.header-links {
     color: white;
     text-shadow: 1px 1px 5px white;
     text-decoration: none;
@@ -153,4 +153,22 @@ input {
     text-align: center;
     font-size: 24px;
     margin-bottom: 50px;
+}
+
+.admin-links-block {
+    display: flex;
+    height: 80px;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.head-text {
+    font-size: 22px;
+    margin-bottom: 40px;
+}
+
+.head-text1 {
+    font-size: 18px;
+    text-align: center;
 }

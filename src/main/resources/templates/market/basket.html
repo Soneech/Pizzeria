@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <meta charset="UTF-8">
         <title>Корзина</title>
@@ -16,9 +18,12 @@
                 </a>
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
-            <div class="auth">
-                <a class="profile" th:href="@{/user/profile}">
-                    <img th:src="@{/icon/profile.png}" class="links-img profile-img">
+            <div class="header-links-block">
+                <a class="admin header-links" th:href="@{/admin}" sec:authorize="hasAuthority('ADMIN')">
+                    Админ
+                </a>
+                <a class="profile header-links" th:href="@{/user/profile}">
+                    Профиль
                 </a>
             </div>
         </div>
@@ -56,7 +61,7 @@
                         </div>
                     </div>
 
-                    <p class="info-text" th:if="${totalCost != 0}">
+                    <p class="head-text1" th:if="${totalCost != 0}">
                         Итоговая цена:
                         <span class="total-cost" th:text="${totalCost}"/>
                         р
@@ -66,7 +71,7 @@
                         <input type="submit" class="button" value="Оформить заказ"/>
                     </form>
 
-                    <p class="info-text" th:if="${totalCost == 0}">Корзина пуста :(</p>
+                    <p class="head-text1" th:if="${totalCost == 0}">Корзина пуста :(</p>
 
                 </div>
             </div>

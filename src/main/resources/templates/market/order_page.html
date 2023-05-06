@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <meta charset="UTF-8">
         <title>Заказ</title>
@@ -16,12 +18,15 @@
                 </a>
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
-            <div class="auth">
-                <a class="profile" th:href="@{/user/profile}">
-                    <img th:src="@{/icon/profile.png}" class="links-img profile-img">
+            <div class="header-links-block">
+                <a class="admin header-links" th:href="@{/admin}" sec:authorize="hasAuthority('ADMIN')">
+                    Админ
                 </a>
-                <a class="basket" th:href="@{/user/basket}">
-                    <img th:src="@{/icon/basket.png}" class="links-img basket-img">
+                <a class="profile header-links" th:href="@{/user/profile}">
+                    Профиль
+                </a>
+                <a class="basket header-links" th:href="@{/user/basket}">
+                    Корзина
                 </a>
             </div>
         </div>
@@ -31,13 +36,19 @@
                 <p class="head-text">Информация о заказе</p>
                 <div class="order-cart">
                     <h3>Заказ № <span th:text="${order.getNumber()}"></span></h3>
-                    <p>
-                        Статус заказа:
-                        <span th:if="${order.getIsActive()}"> активный</span>
-                        <span th:if="${!order.getIsActive()}"> завершённый</span>
-                    </p>
+
+                    <p class="info-text" th:if="${order.getIsActive()}">Активный</p>
+                    <p class="info-text" th:if="${!order.getIsActive()}">Завершённый</p>
+
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                        <p class="info-text">Информация о покупателе:</p>
+                        <p class="username">Имя: <span th:text="${order.getUser().getName()}"></span></p>
+                        <p class="phone-number">Телефон:
+                            <span th:text="${order.getUser().getPhoneNumber()}"></span></p>
+                    </div>
+
                     <div class="address">
-                        <p>Адрес доставки:</p>
+                        <p class="info-text">Адрес доставки:</p>
                         <p th:text="${'г. ' + order.getAddress().getCity()}"></p>
                         <p th:text="${order.getAddress().getStreet() + ', ' +
                                                                 order.getAddress().getHouseNumber()}"></p>
@@ -45,7 +56,7 @@
                     </div>
                 </div>
 
-                <p class="info-text">Заказанные товары:</p>
+                <p class="head-text1">Заказанные товары:</p>
 
                 <div class="products">
                     <div class="product-cart" th:each="product: ${order.getOrdersData()}">
@@ -64,7 +75,15 @@
                     </div>
                 </div>
 
-                <p class="info-text">Итоговая цена: <span class="total-cost" th:text="${order.getCost()}"/>р</p>
+                <p class="head-text1">Итоговая цена: <span class="total-cost" th:text="${order.getCost()}"/>р</p>
+
+                <form th:method="POST" th:action="@{/admin/orders/close/{id}(id=${order.getId()})}"
+                      sec:authorize="hasAuthority('ADMIN')" class="close-form"
+                        th:if="${order.getIsActive()}">
+
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <input type="submit" class="button" value="Закрыть заказ">
+                </form>
             </div>
 
             <div class="footer">

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <meta charset="UTF-8">
         <title>Активные заказы</title>
@@ -14,12 +16,15 @@
                 </a>
                 <a class="logo-text" th:href="@{/}">Soneech Pizza</a>
             </div>
-            <div class="auth">
-                <a class="profile" th:href="@{/user/profile}">
-                    <img th:src="@{/icon/profile.png}" class="links-img profile-img">
+            <div class="header-links-block">
+                <a class="admin header-links" th:href="@{/admin}" sec:authorize="hasAuthority('ADMIN')">
+                    Админ
                 </a>
-                <a class="basket" th:href="@{/user/basket}">
-                    <img th:src="@{/icon/basket.png}" class="links-img basket-img">
+                <a class="profile header-links" th:href="@{/user/profile}">
+                    Профиль
+                </a>
+                <a class="basket header-links" th:href="@{/user/basket}">
+                    Корзина
                 </a>
             </div>
         </div>
@@ -31,8 +36,19 @@
 
                     <div class="order-cart" th:each="order: ${orders}">
                         <h3>Заказ № <span th:text="${order.getNumber()}"/></h3>
+
+                        <p class="info-text" th:if="${order.getIsActive()}">Активный</p>
+                        <p class="info-text" th:if="${!order.getIsActive()}">Завершённый</p>
+
+                        <div class="user-info" sec:authorize="hasAuthority('ADMIN')">
+                            <p class="info-text">Информация о покупателе:</p>
+                            <p class="username">Имя: <span th:text="${order.getUser().getName()}"></span></p>
+                            <p class="phone-number">Телефон:
+                                <span th:text="${order.getUser().getPhoneNumber()}"></span></p>
+                        </div>
+
                         <div class="address">
-                            <p>Адрес доставки:</p>
+                            <p class="info-text">Адрес доставки:</p>
                             <p th:text="${'г. ' + order.getAddress().getCity()}"></p>
                             <p th:text="${order.getAddress().getStreet() + ', ' +
                                                                 order.getAddress().getHouseNumber()}"></p>

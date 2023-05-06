@@ -2,16 +2,6 @@
     text-align: center;
 }
 
-.head-text {
-    font-size: 22px;
-    margin-bottom: 40px;
-}
-
-.info-text {
-    text-align: center;
-    font-size: 18px;
-}
-
 .product-cart {
     display: flex;
     padding: 20px;

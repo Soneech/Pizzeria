@@ -37,11 +37,6 @@ public class OrderService {
         return orderRepository.getById(id);
     }
 
-    public List<Order> getAllUserOrders(Authentication authentication) {
-        User user = userService.getAuthenticatedUser(authentication);
-        return orderRepository.findAllUserOrders(user.getId());
-    }
-
     public List<Order> getActiveUserOrders(Authentication authentication) {
         User user = userService.getAuthenticatedUser(authentication);
         return orderRepository.findActiveUserOrders(user.getId());
@@ -50,6 +45,18 @@ public class OrderService {
     public List<Order> getCompletedUserOrders(Authentication authentication) {
         User user = userService.getAuthenticatedUser(authentication);
         return orderRepository.findCompletedUserOrders(user.getId());
+    }
+
+    public List<Order> getActiveOrders() {
+        return orderRepository.findActiveOrders();
+    }
+
+    public List<Order> getCompletedOrders() {
+        return orderRepository.findCompletedOrders();
+    }
+
+    public void updateOrder(Order order) {
+        orderRepository.save(order);
     }
 
     @Transactional

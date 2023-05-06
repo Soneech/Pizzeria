@@ -16,4 +16,10 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT o FROM Order o WHERE o.user.id = ?1 AND o.isActive = false")
     List<Order> findCompletedUserOrders(Long userId);
+
+    @Query("SELECT o FROM Order o WHERE o.isActive = true")
+    List<Order> findActiveOrders();
+
+    @Query("SELECT o FROM Order o WHERE o.isActive = false")
+    List<Order> findCompletedOrders();
 }
