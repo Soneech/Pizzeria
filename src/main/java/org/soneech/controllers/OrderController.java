@@ -6,6 +6,7 @@ import org.soneech.models.Image;
 import org.soneech.models.User;
 import org.soneech.repository.BasketDataRepository;
 import org.soneech.service.BasketDataService;
+import org.soneech.service.OrderService;
 import org.soneech.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,15 +26,16 @@ import java.util.List;
 public class OrderController {
     private final UserService userService;
     private final BasketDataService basketDataService;
-
     private final BasketDataRepository basketDataRepository;
+    private final OrderService orderService;
 
     @Autowired
     public OrderController(UserService userService, BasketDataService basketDataService,
-                           BasketDataRepository basketDataRepository) {
+                           BasketDataRepository basketDataRepository, OrderService orderService) {
         this.userService = userService;
         this.basketDataService = basketDataService;
         this.basketDataRepository = basketDataRepository;
+        this.orderService = orderService;
     }
 
     @GetMapping("/orders/active")
@@ -70,7 +72,7 @@ public class OrderController {
     public String createOrder(@ModelAttribute("address") @Valid Address address, BindingResult bindingResult,
                               Model model, Authentication authentication) {
         if (!bindingResult.hasErrors()) {
-
+            orderService.addOrder(address, authentication);
             return "redirect:/user/orders/active";
         }
         setParametersForCreateOrderPage(model, authentication);
