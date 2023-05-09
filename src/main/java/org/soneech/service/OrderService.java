@@ -79,7 +79,7 @@ public class OrderService {
         order.setUser(user);
         order.setAddress(address);
         order.setIsActive(true);
-        order.setNumber(order.hashCode()); // наверное временно :D
+        order.setNumber(order.hashCode());
         order.setCost(basketDataService.getTotalCost(basketDataList));
 
         order = orderRepository.save(order);

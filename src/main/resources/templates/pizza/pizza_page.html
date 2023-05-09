@@ -42,11 +42,14 @@
 
         <div class="main">
             <div class="content">
+
                 <div class="pizza-block-page">
+
                     <div class="pizza-image-block">
                         <img class="pizza-image-page"
                              th:src="@{/image/pizza/{file}(file=${pizza.getImage().getFileName() + img_extension})}">
                     </div>
+
                     <div class="pizza-info">
                         <h2 class="pizza-name" th:text="${pizza.getName()}"/>
                         <p class="pizza-price" th:text="${pizza.getPrice()} + 'р'"/>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Service
@@ -49,6 +50,7 @@ public class BasketDataService {
         return basketDataRepository.findCertainBasketDataForUser(userId, pizzaId);
     }
 
+    @Transactional
     public void saveBasketData(Authentication authentication, Long pizzaId) {
         User user = userService.getAuthenticatedUser(authentication);
         Pizza pizza = pizzaService.getPizzaById(pizzaId);

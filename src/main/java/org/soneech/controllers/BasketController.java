@@ -2,14 +2,9 @@ package org.soneech.controllers;
 
 import org.soneech.models.BasketData;
 import org.soneech.models.Image;
-import org.soneech.models.User;
-import org.soneech.repository.BasketDataRepository;
 import org.soneech.service.BasketDataService;
-import org.soneech.service.PizzaService;
-import org.soneech.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,15 +15,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 public class BasketController {
-    private final UserService userService;
-    private final PizzaService pizzaService;
     private final BasketDataService basketDataService;
 
     @Autowired
-    public BasketController(UserService userService,
-                            PizzaService pizzaService, BasketDataService basketDataService) {
-        this.userService = userService;
-        this.pizzaService = pizzaService;
+    public BasketController(BasketDataService basketDataService) {
         this.basketDataService = basketDataService;
     }
 

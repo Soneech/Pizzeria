@@ -30,7 +30,9 @@
 
         <div class="main">
             <div class="content">
+
                 <p class="head-text">Ваша корзина</p>
+
                 <div class="basket">
                     <div class="product-cart" th:each="data: ${basketData}" th:id="${data.getId()}">
                         <div class="pizza-image-block">
@@ -60,13 +62,11 @@
                             </div>
                         </div>
                     </div>
-
                     <p class="head-text1" th:if="${totalCost != 0}">
                         Итоговая цена:
                         <span class="total-cost" th:text="${totalCost}"/>
                         р
                     </p>
-
                     <form th:method="GET" th:action="@{/user/orders/new}" th:if="${totalCost != 0}">
                         <input type="submit" class="button" value="Оформить заказ"/>
                     </form>

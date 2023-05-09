@@ -40,11 +40,15 @@
 
         <div class="main">
             <div class="content">
+
                 <p class="greeting-text">Добро пожаловать в Soneech Pizza!</p>
+
                 <div class="pizza-grid">
                     <div class="pizza-block" th:each="pizza: ${pizzas}">
                         <a class="pizza-link" th:href="@{/pizza/{id}(id=${pizza.getId()})}">
-                            <img class="pizza-image" th:src="@{/image/pizza/{file}(file=${pizza.getImage().getFileName() + img_extension})}">
+                            <img class="pizza-image"
+                                 th:src="@{/image/pizza/{file}(file=${pizza.getImage().getFileName() +
+                                                                                                img_extension})}">
                             <p class="pizza-name" th:text="${pizza.getName()}"/>
                             <p class="pizza-price" th:text="${pizza.getPrice()} + 'р'"/>
                         </a>

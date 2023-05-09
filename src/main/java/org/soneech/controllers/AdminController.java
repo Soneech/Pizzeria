@@ -17,12 +17,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    private final UserService userService;
     private final OrderService orderService;
 
     @Autowired
-    public AdminController(UserService userService, OrderService orderService) {
-        this.userService = userService;
+    public AdminController(OrderService orderService) {
         this.orderService = orderService;
     }
 
